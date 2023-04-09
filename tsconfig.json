@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2019", 
+    "module": "commonjs", 
+    "sourceMap": true, 
+    "outDir": "dist", 
+    "rootDir": ".", 
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/tests/*": ["./tests/*"],
+      "@/src/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "tests", "jest-integration-environment.js"],
+  "exclude": []
+}

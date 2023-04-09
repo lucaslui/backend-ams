@@ -1,0 +1,26 @@
+version: "3"
+
+networks:
+  default:
+    name: backend-mms-network
+
+services:
+  backend-mms:
+    container_name: backend-mms
+    image: node:14
+    working_dir: /usr/backend-mms/
+    restart: always
+    command: bash -c "npm install --only=production && npm install -D nodemon && npm run debug"
+    volumes:
+      - ./dist/:/usr/backend-mms/dist/
+      - ./package.json:/usr/backend-mms/package.json
+    ports:
+      - "3030:3030"
+      - "9303:9303"
+    environment:
+      HOST: ${HOST}
+      PORT: ${PORT}
+      MONGO_URL: ${MONGO_URL}
+      GMAIL_USER: ${GMAIL_USER}
+      GMAIL_APP_PASSWORD: ${GMAIL_APP_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}

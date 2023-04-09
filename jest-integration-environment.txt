@@ -1,0 +1,24 @@
+const NodeEnvironment = require('jest-environment-node').TestEnvironment
+
+const { GenericContainer } = require('testcontainers')
+
+class CustomEnvironment extends NodeEnvironment {
+  async setup () {
+    const mongoContainer = await new GenericContainer('mongo').withExposedPorts(27017).start()
+
+    const mongoHost = mongoContainer.getHost()
+    const mongoPort = mongoContainer.getMappedPort(27017)
+
+    this.mongoContainer = mongoContainer
+
+    this.global.process.env.MONGO_URL = `mongodb://${mongoHost}:${mongoPort}`
+  }
+
+  async teardown () {
+    if (this.mongoContainer) {
+      this.mongoContainer.stop()
+    }
+  }
+}
+
+module.exports = CustomEnvironment

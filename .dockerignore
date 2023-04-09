@@ -1,0 +1,16 @@
+.git
+.vscode
+_databases
+dist
+node_modules
+.dockerignore
+.eslintignore
+.eslintrc.json
+.gitignore
+.huskyrc.json
+.lintstagedrc.json
+docker-compose.yml
+Dockerfile
+README.md
+
+
