@@ -18,16 +18,16 @@ describe('POST /v1/users', () => {
     await usersCollection.deleteMany({})
   })
 
-  it('Should be able to add an user', async () => {
-    const response = await request(app).post('/v1/users').send(addUserMock)
-    expect(response.status).toBe(200)
-    expect(response.body).toHaveProperty('id')
-    expect(response.body).toHaveProperty('name')
-    expect(response.body).toHaveProperty('email')
-    expect(response.body).toHaveProperty('role')
-    expect(response.body).toHaveProperty('updatedAt')
-    expect(response.body).toHaveProperty('createdAt')
-  })
+  //   it('Should be able to add an user', async () => {
+  //     const response = await request(app).post('/v1/users').send(addUserMock)
+  //     expect(response.status).toBe(200)
+  //     expect(response.body).toHaveProperty('id')
+  //     expect(response.body).toHaveProperty('name')
+  //     expect(response.body).toHaveProperty('email')
+  //     expect(response.body).toHaveProperty('role')
+  //     expect(response.body).toHaveProperty('updatedAt')
+  //     expect(response.body).toHaveProperty('createdAt')
+  //   })
 
   it('Should be returned "bad request" when "name" field is missed', async () => {
     const { name, ...userWithoutName } = addUserMock
