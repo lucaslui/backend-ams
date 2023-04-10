@@ -66,6 +66,17 @@ Antes de começar, você precisará ter as seguintes ferramentas instaladas em s
 
   - node >= 18.0.0
   - docker >= 23.0.1
+  - mongodb
+  - gmail
+  
+Defina também as seguintes variáveis de ambiente
+
+  - HOST:
+  - PORT:
+  - MONGO_URL:
+  - GMAIL_USER: 
+  - GMAIL_APP_PASSWORD:
+  - JWT_SECRET:
 
 <h2 id="install"> 🏗️ Instalação </h2>
 
