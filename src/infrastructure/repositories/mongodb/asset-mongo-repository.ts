@@ -15,6 +15,8 @@ import { ILoadAssetsByUnitIdRepository } from '@/src/usecases/boundaries/output/
 import { EditAssetImageIdRepositoryParams, IEditAssetImageIdRepository } from '@/src/usecases/boundaries/output/repositories/asset/edit-asset-image-id-repository'
 import { IEditAssetImageRepository, IEditAssetImageRepositoryParams } from '@/src/usecases/boundaries/output/repositories/asset/edit-asset-image-repository'
 import { ILoadAssetImageByIdRepository, LoadAssetImageByIdRepositoryParams } from '@/src/usecases/boundaries/output/repositories/asset/load-asset-image-by-id-repository'
+import { DeleteAssetsByUnitIdRepositoryParams, IDeleteAssetsByUnitIdRepository } from '@/src/usecases/boundaries/output/repositories/asset/delete-assets-by-unit-id-repository'
+import { DeleteAssetsByCompanyIdRepositoryParams, IDeleteAssetsByCompanyIdRepository } from '@/src/usecases/boundaries/output/repositories/asset/delete-assets-by-company-id-repository'
 
 export class AssetMongoRepository implements
 IAddAssetRepository,
@@ -27,7 +29,9 @@ ILoadAssetsByIdListRepository,
 ILoadAssetImageByIdRepository,
 ILoadAssetByIdRepository,
 ILoadAssetByNameRepository,
-IDeleteAssetRepository {
+IDeleteAssetRepository,
+IDeleteAssetsByUnitIdRepository,
+IDeleteAssetsByCompanyIdRepository {
   async add (params: IAddAssetRepositoryParams): Promise<AssetModel> {
     const assetsCollection = await MongoHelper.getCollection('assets')
     const result = await assetsCollection.insertOne({
@@ -220,5 +224,15 @@ IDeleteAssetRepository {
   async delete (params: DeleteAssetParams): Promise<void> {
     const assetsCollection = await MongoHelper.getCollection('assets')
     await assetsCollection.deleteOne({ _id: MongoHelper.toObjectId(params.assetId) })
+  }
+
+  async deleteByUnitId (params: DeleteAssetsByUnitIdRepositoryParams): Promise<void> {
+    const assetsCollection = await MongoHelper.getCollection('assets')
+    await assetsCollection.deleteMany({ unitId: MongoHelper.toObjectId(params.unitId) })
+  }
+
+  async deleteByCompanyId (params: DeleteAssetsByCompanyIdRepositoryParams): Promise<void> {
+    const assetsCollection = await MongoHelper.getCollection('assets')
+    await assetsCollection.deleteMany({ companyId: MongoHelper.toObjectId(params.companyId) })
   }
 }

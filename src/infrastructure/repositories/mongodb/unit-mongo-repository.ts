@@ -10,15 +10,17 @@ import { DeleteUnitParams } from '@/src/usecases/boundaries/input/unit/delete-un
 import { ILoadUnitsByIdListRepository } from '@/src/usecases/boundaries/output/repositories/unit/load-units-by-id-list-repository'
 import { LoadUnitsParams } from '@/src/usecases/boundaries/input/unit/load-units'
 import { PaginateDataModel } from '@/src/entities/data'
+import { DeleteUnitsByCompanyIdRepositoryParams, IDeleteUnitsByCompanyIdRepository } from '@/src/usecases/boundaries/output/repositories/unit/delete-units-by-company-id-repository'
 
-export class UnitsMongoRepository implements
+export class UnitMongoRepository implements
 IAddUnitRepository,
 IEditUnitRepository,
 ILoadUnitsRepository,
 ILoadUnitsByIdListRepository,
 ILoadUnitByIdRepository,
 ILoadUnitByNameRepository,
-IDeleteUnitRepository {
+IDeleteUnitRepository,
+IDeleteUnitsByCompanyIdRepository {
   async add (params: IAddUnitRepositoryParams): Promise<UnitModel> {
     const unitsCollection = await MongoHelper.getCollection('units')
     const result = await unitsCollection.insertOne({
@@ -136,5 +138,10 @@ IDeleteUnitRepository {
   async delete (params: DeleteUnitParams): Promise<void> {
     const unitsCollection = await MongoHelper.getCollection('units')
     await unitsCollection.deleteOne({ _id: MongoHelper.toObjectId(params.unitId) })
+  }
+
+  async deleteByCompanyId (params: DeleteUnitsByCompanyIdRepositoryParams): Promise<void> {
+    const unitsCollection = await MongoHelper.getCollection('units')
+    await unitsCollection.deleteMany({ companyId: MongoHelper.toObjectId(params.companyId) })
   }
 }

@@ -19,7 +19,7 @@ export default {
   info: {
     title: 'Sistema de Gerenciamento de Ativos (AMS, asset management system)',
     description:
-      'A responsabilidade dessa API é prover gerenciamento de entidades do sistema divido em:\n\n' +
+      'A responsabilidade dessa API é prover gerenciamento de ativos para nossos clientes em um esquema **Multi-tenant**, sendo assim o sistema é dividido em:\n\n' +
       ' - **Sistema Principal**: aquele fornecido para os clientes para que ele possa gerenciar **unidades, ativos e outros usuários**.\n' +
       ' - **Sistema Bastidor**: aquele utilizado por colaboradores da Tractian que irão dar suporte do sistema gerenciando **companhias e outros colaboradores**.\n',
     version: '1.0.0',

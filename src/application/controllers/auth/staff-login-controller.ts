@@ -1,7 +1,6 @@
 import { ICheckStaffAuthentication } from '@/src/usecases/boundaries/input/auth/check-staff-authentication'
-import { HttpRequest, HttpResponse } from '@/src/usecases/boundaries/output/gateways/http/http-client'
 import { badRequest, unauthorized, ok, serverError } from '../../helpers/http-helper'
-import { IController, IValidation } from '../../protocols'
+import { IController, IHttpRequest, IHttpResponse, IValidation } from '../../protocols'
 
 export class StaffLoginController implements IController {
   constructor (
@@ -9,7 +8,7 @@ export class StaffLoginController implements IController {
     private readonly validation: IValidation
   ) {}
 
-  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const error = this.validation.validate(httpRequest.body)
       if (error) {
