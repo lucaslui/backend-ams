@@ -31,7 +31,7 @@
 A responsabilidade dessa API é prover gerenciamento de ativos para nossos clientes em um esquema **Multi-tenant**, sendo assim o sistema dividido em:
 
  - **Sistema Principal**: aquele fornecido para os clientes para que ele possa gerenciar **unidades, ativos e outros usuários**.
- - **Sistema Bastidor**: aquele utilizado por colaboradores da Tractian que irão dar suporte do sistema gerenciando **companhias e outros colaboradores**. 
+ - **Sistema Bastidor**: aquele utilizado por colaboradores para dar suporte a plataforma **companhias e outros colaboradores**. 
 
 <!-- <h1 align="center">
     <img alt="general-vision" title="#general-vision" src="./docs/architecture/general-vision.png" />
